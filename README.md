@@ -1,5 +1,6 @@
 # water_reminder
 
+![mockup](https://github.com/recepozturk53/water_reminder/blob/master/screenshots/water.gif)
 A new Flutter project.
 
 ## Getting Started
