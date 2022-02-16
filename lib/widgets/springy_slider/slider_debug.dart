@@ -1,7 +1,3 @@
-/**
- * Author: Damodar Lohani
- * profile: https://github.com/lohanidamodar
- */
 import 'package:flutter/material.dart';
 
 class SliderDebug extends StatelessWidget {

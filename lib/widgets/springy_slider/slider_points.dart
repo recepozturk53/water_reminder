@@ -1,7 +1,3 @@
-/**
- * Author: Damodar Lohani
- * profile: https://github.com/lohanidamodar
- */
 import 'package:flutter/material.dart';
 import 'package:water_reminder/widgets/springy_slider/slider_controller.dart';
 import 'package:water_reminder/widgets/springy_slider/slider_state.dart';

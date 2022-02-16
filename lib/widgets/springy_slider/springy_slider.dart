@@ -1,13 +1,3 @@
-/**
- * Codes for stringy widgets and all corresponding widgets related to this
- * are taken from Fluttery UI Challenges
- * (https://github.com/matthew-carroll/flutter_ui_challenge_springy_slider)
- * Check out the repository and give it a start
- */
-/**
- * Author: Damodar Lohani
- * profile: https://github.com/lohanidamodar
- */
 import 'package:flutter/material.dart';
 import 'package:water_reminder/widgets/springy_slider/slider_controller.dart';
 import 'package:water_reminder/widgets/springy_slider/slider_dragger.dart';
@@ -17,11 +7,13 @@ import 'package:water_reminder/widgets/springy_slider/slider_points.dart';
 import 'package:water_reminder/widgets/springy_slider/slider_state.dart';
 
 class SpringySlider extends StatefulWidget {
+  final SpringySliderController? sliderController;
   final int? markCount;
   final Color? positiveColor;
   final Color? negativeColor;
 
   SpringySlider({
+    this.sliderController,
     this.markCount,
     this.positiveColor,
     this.negativeColor,
@@ -35,29 +27,16 @@ class _SpringySliderState extends State<SpringySlider>
     with TickerProviderStateMixin {
   final double paddingTop = 50.0;
   final double paddingBottom = 50.0;
-
   SpringySliderController? sliderController;
-
-  @override
-  void initState() {
-    super.initState();
-    sliderController = SpringySliderController(
-      sliderPercent: 0.0,
-      vsync: this,
-    )..addListener(() {
-        setState(() {});
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
-    double? sliderPercent = sliderController!.sliderValue;
-    if (sliderController!.state == SpringySliderState.springing) {
-      sliderPercent = sliderController!.springingPercent;
+    double? sliderPercent = widget.sliderController!.sliderValue;
+    if (widget.sliderController!.state == SpringySliderState.springing) {
+      sliderPercent = widget.sliderController!.springingPercent;
     }
 
     return SliderDragger(
-      sliderController: sliderController,
+      sliderController: widget.sliderController,
       paddingTop: paddingTop,
       paddingBottom: paddingBottom,
       child: Stack(
@@ -70,7 +49,7 @@ class _SpringySliderState extends State<SpringySlider>
             paddingBottom: paddingBottom,
           ),
           SliderGoo(
-            sliderController: sliderController,
+            sliderController: widget.sliderController,
             paddingTop: paddingTop,
             paddingBottom: paddingBottom,
             child: SliderMarks(
@@ -82,7 +61,7 @@ class _SpringySliderState extends State<SpringySlider>
             ),
           ),
           SliderPoints(
-            sliderController: sliderController,
+            sliderController: widget.sliderController,
             paddingTop: paddingTop,
             paddingBottom: paddingBottom,
           ),
