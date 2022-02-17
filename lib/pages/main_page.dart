@@ -13,19 +13,39 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   SpringySliderController? sliderController;
   _buildTextButton(String title, bool isOnLight) {
-    return FlatButton(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-      onPressed: () {
-        if ((sliderController?.sliderValue ?? 0) < 1.00) {
-          sliderController?.sliderValue =
-              (sliderController?.sliderValue ?? 0) + 0.01;
-        }
-      },
-      child: Text(title.toUpperCase(),
-          style: TextStyle(
-              fontSize: 12.0,
-              fontWeight: FontWeight.bold,
-              color: isOnLight ? Colors.pink : Colors.white)),
+    return Row(
+      children: [
+        Icon(
+          Icons.wine_bar,
+          color: Colors.white,
+        ),
+        FlatButton(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+          onPressed: () {
+            if (title.contains("bottle")) {
+              if ((sliderController?.sliderValue ?? 0) < 0.70) {
+                sliderController?.sliderValue =
+                    (sliderController?.sliderValue ?? 0) + 0.30;
+              }
+            } else if (title.contains("glass")) {
+              if ((sliderController?.sliderValue ?? 0) < 0.85) {
+                sliderController?.sliderValue =
+                    (sliderController?.sliderValue ?? 0) + 0.15;
+              }
+            } else if (title.contains("sip")) {
+              if ((sliderController?.sliderValue ?? 0) < 1.00) {
+                sliderController?.sliderValue =
+                    (sliderController?.sliderValue ?? 0) + 0.01;
+              }
+            }
+          },
+          child: Text(title.toUpperCase(),
+              style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                  color: isOnLight ? Colors.pink : Colors.white)),
+        ),
+      ],
     );
   }
 
@@ -81,8 +101,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            _buildTextButton("More", false),
-                            _buildTextButton("Stats", false)
+                            _buildTextButton("One glass", false),
+                            _buildTextButton("One bottle", false),
+                            _buildTextButton("One sip", false)
                           ],
                         ),
                       )
@@ -92,6 +113,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               ),
             ),
           )
-        : Scaffold(body: SafeArea(child: const CircularProgressIndicator()));
+        : const Scaffold(body: SafeArea(child: CircularProgressIndicator()));
   }
 }
